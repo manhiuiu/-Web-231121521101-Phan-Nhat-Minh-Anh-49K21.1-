@@ -1,0 +1,133 @@
+/* =============== THEME =============== */
+:root{
+  --fg:#111827; --muted:#93a1b2; --grid:#e5e7eb; --card:#fff; --title:#4f6f98;
+}
+html,body{margin:0;padding:0}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--fg); background:#fff; padding:12px;
+}
+#view{gap:16px}
+
+/* =============== LAYOUT (title + chart + legend) =============== */
+/* 2 cột: trái = chart, phải = legend; 2 hàng: hàng 1 = title, hàng 2 = chart + legend */
+.chart-wrap{
+  display:grid;
+  grid-template-columns: 1fr 260px;
+  grid-template-rows: auto 1fr;     /* hàng 1: title, hàng 2: chart & legend */
+  column-gap:16px;
+  align-items:start;                 /* legend không bị đội lên trên */
+}
+.chart-title{
+  grid-column:1 / -1;                /* title phủ 2 cột */
+  margin:0 0 10px 0;
+  text-align:center;
+  font-weight:500; font-size:22px; line-height:28px; color:var(--title);
+}
+.chart-panel{ grid-column:1; grid-row:2; }      /* SVG ở cột trái, hàng 2 */
+.legend-side{ grid-column:2; grid-row:2; }      /* legend ở cột phải, hàng 2 */
+
+.card{
+  background:var(--card);
+  border:1px solid #eef0f2;
+  border-radius:12px;
+  padding:10px;
+  position:relative;
+}
+
+/* SVG tự co + cho phép label ngoài không bị cắt */
+svg{ width:100%; height:auto; overflow:visible; }
+
+/* =============== LEGEND =============== */
+.legend-vert{
+  display:flex; flex-direction:column; gap:8px; align-items:flex-start;
+}
+.legend-title{ font-weight:700; margin-bottom:4px; }
+.legend-item{ display:flex; align-items:center; gap:7px; white-space:nowrap; }
+.legend-swatch{ width:10px; height:10px; border-radius:2px; display:inline-block; }
+.legend-side { font-size: 12px; }           
+
+/* =============== AXIS / GRID =============== */
+.axis text{ font-size:12px; fill:#374151; }
+.axis path,.axis line{ stroke:#9aa3af; }
+.gridline line{ stroke:var(--grid); stroke-width:1; }
+
+/* =============== BARS & LABELS =============== */
+.bar{ cursor:pointer; }
+.bar:hover{ filter:brightness(0.98); }
+.label{
+  text-anchor:start;
+  font-size:11px;
+  fill:#111;
+  paint-order:stroke;
+  stroke:#fff; stroke-width:.8;      /* viền trắng cho dễ đọc */
+}
+.label-outside{ font-size:11px; fill:#111 !important; font-weight:600; }
+
+/* =============== TOOLTIP (4 dòng) =============== */
+.tooltip{
+  position:fixed; z-index:9999; pointer-events:none;
+  background:rgba(255,255,255,.96); color:#111;
+  padding:8px 10px; border-radius:10px;
+  box-shadow:0 6px 16px rgba(0,0,0,.18);
+  font-size:12px; line-height:1.35;
+  opacity:0; transition:opacity .08s ease;
+}
+.tooltip .tt-row{ display:flex; gap:10px; margin:2px 0; }
+.tooltip .tt-key{ min-width:100px; color:#111; }
+.tooltip .tt-val{ color:#111; }
+.tooltip .tt-row.first .tt-key,
+.tooltip .tt-row.first .tt-val{ font-weight:700; }  /* chỉ dòng đầu in đậm */
+
+@media (max-width:1366px){
+  .chart-title{font-size:18px}
+  .legend-item{font-size:12px}
+  .axis text{font-size:11px}
+  .label,.label-outside{font-size:10.5px}
+}
+
+/* nhãn nằm trên đỉnh cột, căn giữa */
+.label-top{
+  font-size: 12px;
+  fill: #111;
+  font-weight: 600;
+  text-anchor: middle;     /* quan trọng: căn giữa theo trục X */
+}
+/* cột Q3 */
+.q3-bar{ shape-rendering: crispEdges; }
+
+/* Q9 layout */
+.q9-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(420px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.q9-cell{
+  background: var(--card, #fff);
+  border: 1px solid #eef0f2;
+  border-radius: 12px;
+  padding: 10px 10px 6px;
+  overflow: visible;            /* tránh cắt nội dung */
+}
+.q9-title{
+  margin: 0 0 6px 0;
+  text-align: center;
+  color: #2b5a82;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* SVG responsive */
+.q9-cell svg{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 1200px){
+  .q9-grid{ grid-template-columns: repeat(2, minmax(380px, 1fr)); }
+}
+@media (max-width: 800px){
+  .q9-grid{ grid-template-columns: 1fr; }
+}

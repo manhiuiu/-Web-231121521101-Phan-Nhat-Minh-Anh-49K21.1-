@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard D3.js</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Dashboard D3.js</h1>
+    <nav id="tabs" class="tabs">
+      <button onclick="bootQ1('#view')">Q1</button>
+      <button onclick="bootQ2('#view')">Q2</button>
+      <button onclick="bootQ3('#view')">Q3</button>
+      <button onclick="bootQ4('#view')">Q4</button>
+      <button onclick="bootQ5('#view')">Q5</button>
+      <button onclick="bootQ6('#view')">Q6</button>
+      <button onclick="bootQ7('#view')">Q7</button>
+      <button onclick="bootQ8('#view')">Q8</button>
+      <button onclick="bootQ9('#view')">Q9</button>
+      <button onclick="bootQ10('#view')">Q10</button>
+      <button onclick="bootQ11('#view')">Q11</button>
+      <button onclick="bootQ12('#view')">Q12</button>
+      <button onclick="bootD1('#view')">D1</button>
+    </nav>
+  </header>
+
+  <main id="view" class="view"></main>
+
+  <footer><small>Made with D3.js</small></footer>
+
+  <!-- Scripts cho từng chart -->
+  <script src="./js/q1.js"></script>
+  <script src="./js/q2.js"></script>
+  <script src="./js/q3.js"></script>
+  <script src="./js/q4.js"></script>
+  <script src="./js/q5.js"></script>
+  <script src="./js/q6.js"></script>
+  <script src="./js/q7.js"></script>
+  <script src="./js/q8.js"></script>
+  
+  <script src="./js/q11.js"></script>
+  <script src="./js/q12.js"></script>
+  <script src="./js/q9.js"></script>
+  <script src="./js/q10.js"></script>
+  <script src="./js/d1.js"></script>
+
+
+
+  <script>
+    // khi load trang thì mặc định gọi Q1
+    bootQ1('#view');
+  </script>
+</body>
+</html>
