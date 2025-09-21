@@ -21,7 +21,7 @@
     const view = d3.select(containerSel).html("");
     view.append("div").attr("class", "card").text("Đang tải Q3…");
 
-    d3.csv("./data/data_ggsheet.csv", row => {
+    d3.csv("./data/sales.csv", row => {
       // Aliases you might have in your CSV
       const dtStr = row["Thời gian tạo đơn"] || row["Ngay"] || row["Date"] || row["Created"];
       const sales =
